@@ -5,11 +5,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "orders")
-public class OrderEntity {
+@Entity //Diz que essa classe é uma entidade persistente. Sem essa anotação: a classe seria apenas uma classe Java comum.
+@Table(name = "orders") //Essa anotação diz em qual tabela do banco essa entidade será mapeada. Aqui: a classe OrderEntity será associada à tabela chamada "orders".
+public class OrderEntity { //“OrderEntity é o modelo do pedido do ponto de vista do banco.” ou ainda: “Essa classe diz ao Hibernate como salvar e carregar pedidos e seus itens.”
 
-    @Id
+
+    @Id //Essa anotação marca o campo que será a chave primária da entidade.
     private Long id;
 
     private BigDecimal total;

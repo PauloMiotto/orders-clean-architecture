@@ -8,6 +8,10 @@ public class HealthController {
 
     @GetMapping("/health")
     public String health() {
-        return "OK";
+
+        System.out.println("Endpoint /health foi chamado");
+
+        return "A aplicação está funcionando!   :)";
+
     }
 }

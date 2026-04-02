@@ -40,3 +40,49 @@ public class OrderMapper {
         return e;
     }
 }
+
+/*
+POR QUE O MAPPER EXISTE?
+Porque Order e OrderEntity não são a mesma coisa.
+
+1 - Order
+- imutável
+- puro
+- sem JPA annotations
+- representa domínio
+
+2 - OrderEntity
+- mutável
+- com @Entity
+- acoplado ao Hibernate
+- representa persistência
+
+3 - OrderMapper
+O mapper existe para converter:
+- Entity -> Domain
+- Domain -> Entity
+Isso evita poluir o domínio com detalhes técnicos.
+
+
+POR QUE ENTÃO AS ENTIDADES SÃO MUTÁVEIS?
+Excelente ponto.
+Porque JPA/Hibernate trabalha melhor com objetos mutáveis.
+Por exemplo:
+      OrderEntity e = new OrderEntity();
+      e.setId(...);
+      e.setTotal(...);
+      e.setItems(...);
+
+O Hibernate espera esse estilo porque ele gerencia:
+- ciclo de vida da entity
+- dirty checking
+- lazy loading
+- proxies
+
+Então a ideia moderna não é: “Tudo no sistema inteiro precisa ser imutável”
+A ideia correta é: “O domínio deve ser o mais imutável possível; a infraestrutura pode ser mutável quando necessário”
+Esse equilíbrio é muito importante.
+
+
+
+*/
